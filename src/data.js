@@ -116,7 +116,7 @@ export const NOW = [
 
 export const EXPERIENCE = [
   {
-    role: "Learning Assistant — Data Structures (CS 112)",
+    role: "Incoming Learning Assistant — Data Structures (CS 112)",
     org: "Rutgers University",
     location: "New Brunswick, NJ",
     when: "May 2026 – Present",
