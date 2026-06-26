@@ -61,7 +61,7 @@ export default function Experience() {
         />
         <span
           aria-hidden="true"
-          className="absolute left-4 top-3 w-px bg-gradient-to-b from-[var(--color-accent-bright)] to-[var(--color-accent-deep)] shadow-[0_0_10px_var(--color-accent-glow)]"
+          className="absolute left-4 top-3 w-px bg-[var(--color-accent)]"
           style={{
             height: `max(0px, ${fill - 12}px)`,
             transition: "height 0.12s linear",
@@ -80,14 +80,24 @@ export default function Experience() {
                 aria-hidden="true"
                 className={`grid h-7 w-7 place-items-center rounded-full border transition-all duration-500 ease-[var(--ease-out-quint)] ${
                   active[i]
-                    ? "scale-100 border-[var(--color-accent)] bg-[var(--color-accent-glow)]"
+                    ? "scale-100 border-[var(--color-accent)] bg-[var(--color-accent-soft)]"
                     : "scale-90 border-[var(--color-line)] bg-[var(--color-bg)]"
                 }`}
               >
                 <span
-                  className={`h-2 w-2 rounded-full transition-colors duration-500 ${
-                    active[i] ? "bg-[var(--color-accent)]" : "bg-[var(--color-ink-faint)]"
-                  } ${e.incoming && active[i] ? "animate-pulse" : ""}`}
+                  className={`rounded-full transition-all duration-500 ${
+                    e.incoming
+                      ? `h-2.5 w-2.5 border-[1.5px] bg-transparent ${
+                          active[i]
+                            ? "border-[var(--color-accent)]"
+                            : "border-[var(--color-ink-faint)]"
+                        }`
+                      : `h-2 w-2 ${
+                          active[i]
+                            ? "bg-[var(--color-accent)]"
+                            : "bg-[var(--color-ink-faint)]"
+                        }`
+                  }`}
                 />
               </span>
             </div>
@@ -96,22 +106,37 @@ export default function Experience() {
             <div className="min-w-0 pt-0.5">
               {e.when && (
                 <div
-                  className={`mono mb-1.5 inline-flex items-center gap-1.5 text-[0.78rem] ${
-                    e.honor
-                      ? "rounded-full bg-[var(--color-accent-glow)] px-2.5 py-0.5 text-[var(--color-accent-bright)]"
-                      : e.incoming
+                  className={`mono mb-2 text-[0.76rem] ${
+                    e.incoming
                       ? "text-[var(--color-accent-bright)]"
                       : "text-[var(--color-ink-faint)]"
                   }`}
                 >
-                  {e.honor && <span aria-hidden="true">★</span>}
                   {e.when}
                 </div>
               )}
-              <h3 className="text-[1.2rem] font-semibold leading-snug tracking-[-0.015em] text-[var(--color-ink)]">
-                {e.role}
-              </h3>
-              <p className="mt-1 text-[0.98rem] text-[var(--color-ink-mut)]">{e.org}</p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                <h3 className="text-[1.2rem] font-semibold leading-snug tracking-[-0.015em] text-[var(--color-ink)]">
+                  {e.role}
+                </h3>
+                {e.honor && (
+                  <span className="mono inline-flex items-center gap-1 rounded-full bg-[var(--color-accent-soft)] px-2.5 py-0.5 text-[0.7rem] text-[var(--color-accent-bright)]">
+                    <span aria-hidden="true">★</span>
+                    {e.honor}
+                  </span>
+                )}
+              </div>
+              <p className="mt-1 text-[0.95rem] text-[var(--color-ink-mut)]">
+                {e.org}
+                {e.location && (
+                  <span className="text-[var(--color-ink-faint)]"> · {e.location}</span>
+                )}
+              </p>
+              {e.detail && (
+                <p className="mt-3 max-w-[58ch] text-[0.96rem] leading-relaxed text-[var(--color-ink-soft)]">
+                  {e.detail}
+                </p>
+              )}
             </div>
           </li>
         ))}

@@ -12,13 +12,9 @@ export default function Now() {
           <Reveal
             key={item.title}
             delay={i * 100}
-            className="relative overflow-hidden rounded-2xl border border-[var(--color-line-soft)] bg-[var(--color-surface)]/40 p-7"
+            className="rounded-2xl border border-[var(--color-line-soft)] bg-[var(--color-surface)]/40 p-7"
           >
-            <span
-              className="absolute right-0 top-0 h-24 w-24 bg-[radial-gradient(circle_at_top_right,var(--color-accent-glow),transparent_70%)]"
-              aria-hidden="true"
-            />
-            <span className="mono text-[0.78rem] text-[var(--color-accent)]">
+            <span className="mono text-[0.78rem] text-[var(--color-accent-bright)]">
               {String(i + 1).padStart(2, "0")} —
             </span>
             <h3 className="mt-3 text-[1.3rem] font-semibold tracking-[-0.015em] text-[var(--color-ink)]">

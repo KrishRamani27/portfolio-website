@@ -118,19 +118,28 @@ export const EXPERIENCE = [
   {
     role: "Learning Assistant — Data Structures (CS 112)",
     org: "Rutgers University",
-    when: "Incoming · Fall 2026",
+    location: "New Brunswick, NJ",
+    when: "May 2026 – Present",
     incoming: true,
+    detail:
+      "Teaching 80+ students a week through core data structures — stacks, queues, linked lists, and binary trees — and experimenting with ways to make the classroom more collaborative.",
   },
   {
     role: "Orientation Leader (NSO)",
     org: "Rutgers University",
-    when: "",
+    location: "New Brunswick, NJ",
+    when: "Apr 2026 – Present",
+    detail:
+      "Leading cohorts of 15–20 first-years through multi-day orientation, running cross-venue logistics and mentorship that drove 90%+ attendance.",
   },
   {
-    role: "Product Marketing Fellowship",
+    role: "Product Marketing Fellow",
     org: "Blueprint Rutgers",
-    when: "1st place finish",
-    honor: true,
+    location: "New Brunswick, NJ",
+    when: "Oct – Dec 2025",
+    honor: "1st place",
+    detail:
+      "Built the go-to-market pitch for a product launch with a cross-functional team — audience segmentation, competitive positioning, and brand narrative.",
   },
 ];
 

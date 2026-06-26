@@ -5,11 +5,8 @@ import { GitHubIcon, LinkedInIcon, ArrowUpRight } from "./icons.jsx";
 export default function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="accent-bloom pointer-events-none absolute inset-0" aria-hidden="true" />
-      <div className="grid-field pointer-events-none absolute inset-0 opacity-70" aria-hidden="true" />
-      {/* fade the grid into the page */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[var(--color-bg)]"
+        className="grid-field grid-mask-b pointer-events-none absolute inset-0 opacity-60"
         aria-hidden="true"
       />
 
@@ -17,10 +14,7 @@ export default function Hero() {
         {/* Left: identity */}
         <div>
           <div className="reveal mono mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)]/60 py-1.5 pl-2.5 pr-3.5 text-[0.74rem] text-[var(--color-ink-mut)]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent)] opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-accent)]" />
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
             Rutgers CS&nbsp;’28 · Software &amp; ML/AI
           </div>
 
@@ -87,16 +81,16 @@ function PhotoPlaceholder({ src, name }) {
 
   return (
     <figure className="relative w-[min(78vw,21rem)]">
-      {/* accent frame accent */}
+      {/* offset structural frame — solid hairline, no glow */}
       <div
-        className="absolute -inset-2 rounded-[1.4rem] bg-gradient-to-br from-[var(--color-accent)]/30 via-transparent to-transparent blur-[2px]"
+        className="absolute -inset-3 rounded-2xl border border-[var(--color-line-soft)]"
         aria-hidden="true"
       />
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]">
         {src ? (
           <img src={src} alt={`Portrait of ${name}`} className="h-full w-full object-cover" />
         ) : (
-          <div className="grid h-full w-full place-items-center bg-[radial-gradient(120%_120%_at_70%_10%,oklch(0.25_0_0),oklch(0.18_0_0))]">
+          <div className="grid h-full w-full place-items-center bg-[var(--color-surface)]">
             <div className="grid-field absolute inset-0 opacity-50" aria-hidden="true" />
             <div className="relative text-center">
               <div className="font-display text-6xl font-bold text-[var(--color-ink-faint)]">

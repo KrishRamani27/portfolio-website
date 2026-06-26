@@ -14,7 +14,7 @@ export default function Skills() {
             delay={i * 70}
             className="grid grid-cols-1 items-baseline gap-x-10 gap-y-3 border-t border-[var(--color-line-soft)] py-6 sm:grid-cols-[10rem_1fr]"
           >
-            <h3 className="mono text-[0.85rem] uppercase tracking-wider text-[var(--color-accent)]">
+            <h3 className="mono text-[0.85rem] uppercase tracking-wider text-[var(--color-accent-bright)]">
               {cat.group}
             </h3>
             <ul className="flex flex-wrap gap-2.5">

@@ -14,7 +14,7 @@ export function Section({ id, children, className = "" }) {
 export function SectionHeader({ kicker, title, lead }) {
   return (
     <Reveal className="mb-12 lg:mb-16">
-      <div className="mono mb-3 text-[0.82rem] font-medium text-[var(--color-accent)]">
+      <div className="mono mb-3 text-[0.82rem] font-medium text-[var(--color-accent-bright)]">
         <span className="text-[var(--color-ink-faint)]">// </span>
         {kicker}
       </div>

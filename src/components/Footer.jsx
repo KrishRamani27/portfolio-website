@@ -4,8 +4,7 @@ import { GitHubIcon, LinkedInIcon, ArrowUpRight } from "./icons.jsx";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-10 overflow-hidden border-t border-[var(--color-line-soft)]">
-      <div className="accent-bloom pointer-events-none absolute inset-x-0 bottom-0 top-auto h-64 rotate-180 opacity-60" aria-hidden="true" />
+    <footer className="relative mt-10 border-t border-[var(--color-line-soft)]">
       <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="flex flex-col items-start justify-between gap-10 sm:flex-row sm:items-end">
           <div>

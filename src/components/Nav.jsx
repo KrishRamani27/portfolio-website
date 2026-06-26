@@ -35,7 +35,7 @@ export default function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-[200] transition-colors duration-500 ${
         scrolled
-          ? "border-b border-[var(--color-line-soft)] bg-[oklch(0.16_0_0/0.82)] backdrop-blur-xl"
+          ? "border-b border-[var(--color-line-soft)] bg-[var(--color-bg-deep)]"
           : "border-b border-transparent bg-transparent"
       }`}
     >
@@ -101,7 +101,7 @@ export default function Nav() {
 
       {/* Mobile sheet */}
       <div
-        className={`overflow-hidden border-t border-[var(--color-line-soft)] bg-[oklch(0.14_0_0/0.96)] backdrop-blur-xl transition-[max-height] duration-400 ease-[var(--ease-out-quint)] md:hidden ${
+        className={`overflow-hidden border-t border-[var(--color-line-soft)] bg-[var(--color-bg-deep)] transition-[max-height] duration-400 ease-[var(--ease-out-quint)] md:hidden ${
           open ? "max-h-96" : "max-h-0 border-t-transparent"
         }`}
       >

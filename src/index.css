@@ -23,11 +23,12 @@
   --color-ink-mut: oklch(0.68 0.009 245);
   --color-ink-faint: oklch(0.56 0.011 245);
 
-  /* Brand — bright azure, the single signal */
-  --color-accent: oklch(0.65 0.17 245);
-  --color-accent-bright: oklch(0.74 0.155 240);
-  --color-accent-deep: oklch(0.52 0.16 252);
-  --color-accent-glow: oklch(0.65 0.17 245 / 0.16);
+  /* Brand — one refined solid azure. Used as flat color only:
+    no neon, no gradients, no glow. -bright is for text on dark,
+     -soft is a flat low-opacity tint for quiet fills. */
+  --color-accent: oklch(0.60 0.13 248);
+  --color-accent-bright: oklch(0.73 0.12 248);
+  --color-accent-soft: oklch(0.60 0.13 248 / 0.13);
 
   /* Fonts */
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
@@ -136,13 +137,11 @@
   background-size: 56px 56px;
 }
 
-/* Amber radial bloom behind the hero */
-.accent-bloom {
-  background: radial-gradient(
-    60% 55% at 50% 0%,
-    var(--color-accent-glow) 0%,
-    transparent 70%
-  );
+/* Mask the technical grid out toward the bottom (alpha mask, not a visible
+   color gradient) so the hairlines resolve into the surface cleanly. */
+.grid-mask-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
 }
 
 .link-underline {

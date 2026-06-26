@@ -118,7 +118,7 @@ function StatusBadge({ live }) {
     <span
       className={`mono inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.68rem] uppercase tracking-wider ${
         live
-          ? "bg-[var(--color-accent-glow)] text-[var(--color-accent-bright)]"
+          ? "bg-[var(--color-accent-soft)] text-[var(--color-accent-bright)]"
           : "bg-[var(--color-surface-2)] text-[var(--color-ink-mut)]"
       }`}
     >
