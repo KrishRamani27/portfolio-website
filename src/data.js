@@ -104,7 +104,8 @@ export const PROJECTS = [
 export const NOW = [
   {
     title: "Extending ArXiv Navigator",
-    detail: "Adding new features to the RAG application now that it's live.",
+    detail:
+      "Building out the RAG pipeline with a retrieval evaluation harness, semantic caching, and cross-encoder reranking.",
   },
   {
     title: "Summer 2027 internship applications",
