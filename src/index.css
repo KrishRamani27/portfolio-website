@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Krish Ramani — portfolio design system
+   Mood: engineering instrument panel at night.
+   Deep graphite surface (chroma 0, NOT terminal-green), one
+   bright azure signal as the brand, technical mono reserved
+   for real metrics. OKLCH throughout.
+   ============================================================ */
+
+@theme {
+  /* Surface ramp — true graphite, no hue tint */
+  --color-bg: oklch(0.16 0 0);
+  --color-bg-deep: oklch(0.12 0 0);
+  --color-surface: oklch(0.205 0 0);
+  --color-surface-2: oklch(0.25 0 0);
+  --color-line: oklch(0.32 0 0);
+  --color-line-soft: oklch(0.27 0 0);
+
+  /* Ink ramp — near-neutral with a whisper of cool to sit with azure */
+  --color-ink: oklch(0.97 0.004 245);
+  --color-ink-soft: oklch(0.84 0.006 245);
+  --color-ink-mut: oklch(0.68 0.009 245);
+  --color-ink-faint: oklch(0.56 0.011 245);
+
+  /* Brand — bright azure, the single signal */
+  --color-accent: oklch(0.65 0.17 245);
+  --color-accent-bright: oklch(0.74 0.155 240);
+  --color-accent-deep: oklch(0.52 0.16 252);
+  --color-accent-glow: oklch(0.65 0.17 245 / 0.16);
+
+  /* Fonts */
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Semantic z-index scale */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-overlay: 300;
+
+  /* Easing */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink-soft);
+    font-family: var(--font-body);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    text-wrap: balance;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: oklch(0.16 0 0);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Custom scrollbar — keeps the graphite mood */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line);
+    border-radius: 99px;
+    border: 3px solid var(--color-bg-deep);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-faint);
+  }
+}
+
+/* ---------- Utilities / components ---------- */
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: "ss01", "zero";
+}
+
+/* Fine technical grid backdrop — engineering-notebook texture */
+.grid-field {
+  background-image:
+    linear-gradient(to right, oklch(0.97 0.004 245 / 0.024) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.97 0.004 245 / 0.024) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Amber radial bloom behind the hero */
+.accent-bloom {
+  background: radial-gradient(
+    60% 55% at 50% 0%,
+    var(--color-accent-glow) 0%,
+    transparent 70%
+  );
+}
+
+.link-underline {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.4s var(--ease-out-quint);
+}
+.link-underline:hover {
+  background-size: 100% 1.5px;
+}
+
+/* Entrance reveal — enhances an already-visible default (opacity:1 baseline) */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  animation: rise 0.85s var(--ease-out-expo) forwards;
+}
+
+/* Scroll reveal — hidden state applied by JS only, so no-JS / reduced-motion
+   / headless renders stay fully visible. Never ships a blank section. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+  }
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+}
