@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(npm -v)",
-      "Read(//Users/krishramani/.claude/**)",
-      "Bash(echo \"=== skills-lock.json ===\" && cat /Users/krishramani/Portfolio-Project/skills-lock.json; echo; echo \"=== .claude tree ===\"; find /Users/krishramani/Portfolio-Project/.claude -maxdepth 4 2>/dev/null; echo \"=== .agents tree ===\"; find /Users/krishramani/Portfolio-Project/.agents -maxdepth 4 2>/dev/null; echo \"=== search impeccable ===\"; find /Users/krishramani -maxdepth 6 -iname '*impeccable*' 2>/dev/null | head)"
-    ]
-  }
-}
