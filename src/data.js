@@ -5,7 +5,7 @@ export const PROFILE = {
   name: "Krish Ramani",
   tagline: "CS junior at Rutgers building ML/AI systems and full-stack applications.",
   // PLACEHOLDER: drop a real headshot at /public/headshot.jpg and set photo below.
-  photo: null,
+  photo: "/headshot.jpg",
   links: {
     github: "https://github.com/KrishRamani27",
     linkedin: "https://www.linkedin.com/in/krishramani27/",
