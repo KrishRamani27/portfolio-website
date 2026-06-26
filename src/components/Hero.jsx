@@ -32,8 +32,6 @@ export default function Hero() {
             style={{ animationDelay: "150ms" }}
           >
             I enjoy building software that solves real problems. Most of my projects combine machine learning with backend engineering because I like taking ideas from prototype to production.{" "}
-            <span className="text-[var(--color-accent-bright)]">ML/AI systems</span> and{" "}
-            <span className="text-[var(--color-accent-bright)]">full-stack applications</span>.
           </p>
 
           <div
