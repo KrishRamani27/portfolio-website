@@ -1,6 +1,6 @@
 import { PROFILE } from "../data.js";
 import Ext from "./Ext.jsx";
-import { GitHubIcon, LinkedInIcon, ArrowUpRight } from "./icons.jsx";
+import { ArrowUpRight, GitHubIcon, LinkedInIcon } from "./icons.jsx";
 
 export default function Hero() {
   return (
@@ -31,7 +31,7 @@ export default function Hero() {
             className="reveal mt-7 max-w-md text-[clamp(1.1rem,2.4vw,1.4rem)] leading-snug text-[var(--color-ink-soft)]"
             style={{ animationDelay: "150ms" }}
           >
-            CS junior at Rutgers building{" "}
+            I enjoy building software that solves real problems. Most of my projects combine machine learning with backend engineering because I like taking ideas from prototype to production.{" "}
             <span className="text-[var(--color-accent-bright)]">ML/AI systems</span> and{" "}
             <span className="text-[var(--color-accent-bright)]">full-stack applications</span>.
           </p>
