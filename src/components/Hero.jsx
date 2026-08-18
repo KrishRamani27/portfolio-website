@@ -10,7 +10,7 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto flex min-h-[88svh] max-w-5xl flex-col justify-between px-6 pb-16 pt-28 sm:px-8">
+      <div className="relative mx-auto flex min-h-[88svh] max-w-[84rem] flex-col justify-between px-6 pb-16 pt-28 sm:px-10">
         {/* Header strip: reads like the top of a spec sheet */}
         <div className="reveal flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-b border-[var(--color-rule)] pb-3">
           <p className="label">Rutgers University / CS / 2028</p>
@@ -113,7 +113,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative mx-auto max-w-5xl px-6 sm:px-8">
+      <div className="relative mx-auto max-w-[84rem] px-6 sm:px-10">
         <div
           className="reveal grid grid-cols-1 items-end gap-x-12 gap-y-5 border-t-2 border-[var(--color-ink)] pt-6 sm:grid-cols-[1fr_auto]"
           style={{ animationDelay: "320ms" }}

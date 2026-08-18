@@ -1,15 +1,17 @@
 import { EXPERIENCE } from "../data.js";
-import { Section, Label } from "./Section.jsx";
+import { Section, Label, Gutter } from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
 
 export default function Experience() {
   return (
     <Section id="experience">
       <Reveal>
-        <Label>Experience</Label>
-        <h2 className="mt-5 max-w-2xl text-[clamp(2rem,4.5vw,3.1rem)] font-semibold">
-          Research, teaching, and one marketing detour.
-        </h2>
+        <Gutter>
+          <Label className="lg:pt-3">Experience</Label>
+          <h2 className="max-w-[24ch] text-[clamp(2rem,4.5vw,3.1rem)]">
+            Research, teaching, and one marketing detour.
+          </h2>
+        </Gutter>
       </Reveal>
 
       {/* Dates live in the margin, the way a printed CV sets them.
@@ -17,8 +19,8 @@ export default function Experience() {
       <ol className="mt-16">
         {EXPERIENCE.map((e) => (
           <Reveal key={e.role} as="li" className="block">
-            <div className="grid grid-cols-1 gap-x-12 gap-y-3 border-t border-[var(--color-rule)] py-10 sm:grid-cols-[8.5rem_1fr]">
-              <div className="sm:pt-1">
+            <div className="grid grid-cols-1 gap-x-12 gap-y-3 border-t border-[var(--color-rule)] py-10 lg:grid-cols-[13rem_minmax(0,1fr)]">
+              <div className="lg:pt-1">
                 <p
                   className={`mono text-[0.8rem] ${
                     e.incoming

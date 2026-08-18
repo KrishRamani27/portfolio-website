@@ -5,7 +5,7 @@ import { GitHubIcon, LinkedInIcon } from "./icons.jsx";
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--color-ink)] bg-[var(--color-bg-2)]">
-      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8 lg:py-24">
+      <div className="mx-auto max-w-[84rem] px-6 py-20 sm:px-10 lg:py-24">
         <h2 className="max-w-2xl text-[clamp(2rem,5vw,3.4rem)] leading-[1.08]">
           Let's connect.
         </h2>

@@ -45,7 +45,7 @@ export default function Nav() {
           : "border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-[4.25rem] max-w-5xl items-center justify-between px-6 sm:px-8">
+      <nav className="mx-auto flex h-[4.25rem] max-w-[84rem] items-center justify-between px-6 sm:px-10">
         <a
           href="#top"
           className="font-display text-[1.08rem] font-semibold tracking-[-0.02em] text-[var(--color-ink)]"

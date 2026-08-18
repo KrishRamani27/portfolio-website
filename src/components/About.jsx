@@ -1,15 +1,16 @@
 import { ABOUT } from "../data.js";
-import { Section, Label } from "./Section.jsx";
+import { Section, Label, Gutter } from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
 
 export default function About() {
   return (
     <Section id="about" className="border-t border-[var(--color-rule-soft)]">
-      <Reveal>
-        <Label>About</Label>
-      </Reveal>
+      <Gutter>
+        <Reveal>
+          <Label className="lg:pt-3">About</Label>
+        </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-x-16 gap-y-14 lg:grid-cols-[1fr_15rem]">
+        <div className="grid grid-cols-1 gap-x-16 gap-y-14 xl:grid-cols-[minmax(0,1fr)_17rem]">
         {/* The essay. No cards, no chrome — just something to read. */}
         <Reveal className="space-y-7">
           {ABOUT.body.map((para, i) => (
@@ -67,7 +68,8 @@ export default function About() {
             </p>
           </div>
         </Reveal>
-      </div>
+        </div>
+      </Gutter>
     </Section>
   );
 }
