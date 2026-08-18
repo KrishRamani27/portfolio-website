@@ -2,58 +2,52 @@
 
 /* ============================================================
    Krish Ramani — portfolio design system
-   Mood: engineering instrument panel at night.
-   Deep graphite surface (chroma 0, NOT terminal-green), one
-   bright azure signal as the brand, technical mono reserved
-   for real metrics. OKLCH throughout.
+   Mood: a developer tool. White canvas, slate text, quiet grey
+   borders, monospace throughout. Deliberately monochrome —
+   emphasis comes from weight, scale and inversion, never colour.
    ============================================================ */
 
 @theme {
-  /* Surface ramp — true graphite, no hue tint */
-  --color-bg: oklch(0.16 0 0);
-  --color-bg-deep: oklch(0.12 0 0);
-  --color-surface: oklch(0.205 0 0);
-  --color-surface-2: oklch(0.25 0 0);
-  --color-line: oklch(0.32 0 0);
-  --color-line-soft: oklch(0.27 0 0);
+  --color-bg: oklch(1 0 0);
+  --color-bg-2: oklch(0.974 0.003 250);
+  --color-bg-3: oklch(0.941 0.005 250);
 
-  /* Ink ramp — near-neutral with a whisper of cool to sit with azure */
-  --color-ink: oklch(0.97 0.004 245);
-  --color-ink-soft: oklch(0.84 0.006 245);
-  --color-ink-mut: oklch(0.68 0.009 245);
-  --color-ink-faint: oklch(0.56 0.011 245);
+  --color-ink: oklch(0.248 0.009 260);
+  --color-ink-soft: oklch(0.402 0.011 258);
+  --color-ink-mut: oklch(0.532 0.012 258);
+  --color-ink-faint: oklch(0.672 0.011 258);
 
-  /* Brand — one refined solid azure. Used as flat color only:
-    no neon, no gradients, no glow. -bright is for text on dark,
-     -soft is a flat low-opacity tint for quiet fills. */
-  --color-accent: oklch(0.60 0.13 248);
-  --color-accent-bright: oklch(0.73 0.12 248);
-  --color-accent-soft: oklch(0.60 0.13 248 / 0.13);
+  --color-rule: oklch(0.876 0.007 253);
+  --color-rule-soft: oklch(0.928 0.005 253);
 
-  /* Fonts */
-  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* No accent hue. These stay as tokens so every component keeps working,
+     but they all resolve to ink — underlines, dots and markers go black. */
+  --color-accent: oklch(0.248 0.009 260);
+  --color-accent-deep: oklch(0.16 0.008 260);
+  --color-accent-wash: oklch(0.248 0.009 260 / 0.07);
+  --color-str: oklch(0.532 0.012 258);
+  --color-num: oklch(0.248 0.009 260);
+  --color-kw: oklch(0.532 0.012 258);
 
-  /* Semantic z-index scale */
-  --z-base: 0;
-  --z-sticky: 100;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
   --z-nav: 200;
   --z-overlay: 300;
 
-  /* Easing */
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @layer base {
   * {
-    border-color: var(--color-line);
+    border-color: var(--color-rule);
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -77,16 +71,22 @@
     font-synthesis: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    line-height: 1.65;
+    line-height: 1.68;
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  /* Headings are monospace. This is the single biggest reason the page
+     reads as an instrument rather than a magazine. */
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     color: var(--color-ink);
-    text-wrap: balance;
+    font-weight: 700;
+    letter-spacing: -0.035em;
     line-height: 1.04;
-    letter-spacing: -0.02em;
+    text-wrap: balance;
   }
 
   p {
@@ -94,76 +94,122 @@
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: oklch(0.16 0 0);
+    background: var(--color-accent-wash);
+    color: var(--color-accent-deep);
   }
 
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 2px;
   }
 
-  /* Custom scrollbar — keeps the graphite mood */
   ::-webkit-scrollbar {
-    width: 11px;
-    height: 11px;
+    width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-bg-deep);
+    background: var(--color-bg-2);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-line);
-    border-radius: 99px;
-    border: 3px solid var(--color-bg-deep);
+    background: var(--color-rule);
+    border: 3px solid var(--color-bg-2);
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-ink-faint);
   }
 }
 
-/* ---------- Utilities / components ---------- */
+/* ---------- Utilities ---------- */
 
 .mono {
   font-family: var(--font-mono);
   font-feature-settings: "ss01", "zero";
 }
 
-/* Fine technical grid backdrop — engineering-notebook texture */
-.grid-field {
-  background-image:
-    linear-gradient(to right, oklch(0.97 0.004 245 / 0.024) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.97 0.004 245 / 0.024) 1px, transparent 1px);
-  background-size: 56px 56px;
+/* Engineering-paper dot grid. Fine enough to read as substrate. */
+.dot-grid {
+  background-image: radial-gradient(var(--color-rule) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.dot-fade {
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 40%, transparent 95%);
 }
 
-/* Mask the technical grid out toward the bottom (alpha mask, not a visible
-   color gradient) so the hairlines resolve into the surface cleanly. */
-.grid-mask-b {
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 45%, transparent 92%);
+/* Section labels, set as bracketed identifiers */
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+
+/* Readouts: tabular so columns of numbers line up */
+.figure {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }
 
 .link-underline {
   background-image: linear-gradient(var(--color-accent), var(--color-accent));
   background-position: 0 100%;
   background-repeat: no-repeat;
-  background-size: 0% 1.5px;
-  transition: background-size 0.4s var(--ease-out-quint);
+  background-size: 100% 1px;
+  transition: background-size 0.3s var(--ease-out-quint);
 }
 .link-underline:hover {
+  background-size: 100% 2px;
+}
+
+.link-draw {
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.35s var(--ease-out-quint);
+}
+.link-draw:hover {
   background-size: 100% 1.5px;
 }
 
-/* Entrance reveal — enhances an already-visible default (opacity:1 baseline) */
+/* Rules that draw in. Hidden only once JS has armed the reveal, so a
+   no-JS render still shows a finished line. */
+.rule-draw {
+  transform-origin: left;
+}
+.reveal-init .rule-draw {
+  transform: scaleX(0);
+}
+.reveal-in .rule-draw {
+  transform: scaleX(1);
+  transition: transform 1s var(--ease-out-expo) 0.08s;
+}
+
+/* Project rows behave like selectable objects */
+.row-name {
+  transition: transform 0.45s var(--ease-out-quint), color 0.3s ease;
+}
+.group\/row:hover .row-name {
+  transform: translateX(0.5rem);
+}
+.row-edge {
+  transition: background-color 0.4s ease;
+}
+.group\/row:hover .row-edge {
+  background-color: var(--color-accent);
+}
+
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -172,19 +218,17 @@
   animation: rise 0.85s var(--ease-out-expo) forwards;
 }
 
-/* Scroll reveal — hidden state applied by JS only, so no-JS / reduced-motion
-   / headless renders stay fully visible. Never ships a blank section. */
 .reveal-init {
   opacity: 0;
-  transform: translateY(22px);
+  transform: translateY(16px);
   will-change: opacity, transform;
 }
 .reveal-in {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.8s var(--ease-out-expo),
-    transform 0.8s var(--ease-out-expo);
+    opacity 0.7s var(--ease-out-expo),
+    transform 0.7s var(--ease-out-expo);
 }
 
 @media (prefers-reduced-motion: reduce) {

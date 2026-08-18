@@ -1,51 +1,53 @@
 import { PROFILE } from "../data.js";
 import Ext from "./Ext.jsx";
-import { GitHubIcon, LinkedInIcon, ArrowUpRight } from "./icons.jsx";
+import { GitHubIcon, LinkedInIcon } from "./icons.jsx";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-10 border-t border-[var(--color-line-soft)]">
-      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8">
-        <div className="flex flex-col items-start justify-between gap-10 sm:flex-row sm:items-end">
-          <div>
-            <a
-              href="#top"
-              className="font-display text-[clamp(1.8rem,5vw,2.6rem)] font-bold tracking-[-0.025em] text-[var(--color-ink)]"
-            >
-              Let's build something.
-            </a>
-            <p className="mt-3 max-w-sm text-[0.98rem] text-[var(--color-ink-mut)]">
-              Open to ML/AI engineering internships for Summer 2027.
-            </p>
-            <Ext
-              href={`mailto:${PROFILE.links.email}`}
-              className="link-underline mono mt-5 inline-block text-[0.95rem] text-[var(--color-accent-bright)]"
-            >
-              {PROFILE.links.email}
-            </Ext>
-          </div>
+    <footer className="border-t border-[var(--color-ink)] bg-[var(--color-bg-2)]">
+      <div className="mx-auto max-w-5xl px-6 py-20 sm:px-8 lg:py-24">
+        <h2 className="max-w-2xl text-[clamp(2rem,5vw,3.4rem)] leading-[1.08]">
+          Let's connect.
+        </h2>
 
-          <div className="flex items-center gap-3">
+        <p className="mt-6 max-w-lg text-[1.06rem] leading-relaxed text-[var(--color-ink-soft)]">
+          I'm looking for a machine learning or AI engineering internship for Summer 2027.
+          Email is the fastest way to reach me and I answer quickly.
+        </p>
+
+        <Ext
+          href={`mailto:${PROFILE.links.email}`}
+          className="link-underline mt-8 inline-block font-display text-[clamp(1.35rem,3.5vw,2rem)] font-semibold tracking-[-0.02em] text-[var(--color-ink)]"
+        >
+          {PROFILE.links.email}
+        </Ext>
+
+        <p className="mt-7 max-w-lg text-[1.06rem] leading-relaxed text-[var(--color-ink-soft)]">
+          And if you're just building something you're excited about and want someone to
+          build it with, let's connect anyway.
+        </p>
+
+        <div className="mt-16 flex flex-col gap-5 border-t border-[var(--color-rule)] pt-7 sm:flex-row sm:items-center sm:justify-between">
+          <p className="mono text-[0.78rem] text-[var(--color-ink-faint)]">
+            © {new Date().getFullYear()} Krish Ramani · Rutgers University
+          </p>
+
+          <div className="flex items-center gap-7">
             <Ext
               href={PROFILE.links.github}
-              className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2.5 text-[0.88rem] font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink-faint)] hover:bg-[var(--color-surface)]"
+              className="link-draw inline-flex items-center gap-2 text-[0.94rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
             >
-              <GitHubIcon className="h-4 w-4" /> GitHub
-              <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-mut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <GitHubIcon className="h-4 w-4" />
+              GitHub
             </Ext>
             <Ext
               href={PROFILE.links.linkedin}
-              className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2.5 text-[0.88rem] font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-ink-faint)] hover:bg-[var(--color-surface)]"
+              className="link-draw inline-flex items-center gap-2 text-[0.94rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
             >
-              <LinkedInIcon className="h-4 w-4" /> LinkedIn
-              <ArrowUpRight className="h-3.5 w-3.5 text-[var(--color-ink-mut)] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <LinkedInIcon className="h-[0.95rem] w-[0.95rem]" />
+              LinkedIn
             </Ext>
           </div>
-        </div>
-
-        <div className="mono mt-14 flex flex-col gap-2 border-t border-[var(--color-line-soft)] pt-6 text-[0.76rem] text-[var(--color-ink-faint)] sm:flex-row sm:items-center sm:justify-between">
-          <span>© {new Date().getFullYear()} Krish Ramani</span>
-          <span>Rutgers University · CS ’28</span>
         </div>
       </div>
     </footer>

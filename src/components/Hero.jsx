@@ -1,120 +1,134 @@
-import { PROFILE } from "../data.js";
+import { PROFILE, HERO } from "../data.js";
 import Ext from "./Ext.jsx";
-import { ArrowUpRight, GitHubIcon, LinkedInIcon } from "./icons.jsx";
+import { GitHubIcon, LinkedInIcon } from "./icons.jsx";
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
+    <section id="top" className="relative">
       <div
-        className="grid-field grid-mask-b pointer-events-none absolute inset-0 opacity-60"
+        className="dot-grid dot-fade pointer-events-none absolute inset-0 opacity-70"
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-x-12 gap-y-14 px-5 pb-20 pt-36 sm:px-8 lg:grid-cols-[1.35fr_1fr] lg:pb-28 lg:pt-44">
-        {/* Left: identity */}
-        <div>
-          <div className="reveal mono mb-7 inline-flex items-center gap-2.5 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)]/60 py-1.5 pl-2.5 pr-3.5 text-[0.74rem] text-[var(--color-ink-mut)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
-            Rutgers CS&nbsp;’28 · Software &amp; ML/AI
-          </div>
-
-          <h1
-            className="reveal text-[clamp(2.9rem,8vw,5.5rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-[var(--color-ink)]"
-            style={{ animationDelay: "60ms" }}
-          >
-            Krish
-            <br />
-            Ramani
-          </h1>
-
-          <p
-            className="reveal mt-7 max-w-md text-[clamp(1.1rem,2.4vw,1.4rem)] leading-snug text-[var(--color-ink-soft)]"
-            style={{ animationDelay: "150ms" }}
-          >
-            I enjoy building software that solves real problems. Most of my projects combine machine learning with backend engineering because I like taking ideas from prototype to production.{" "}
+      <div className="relative mx-auto flex min-h-[88svh] max-w-5xl flex-col justify-between px-6 pb-16 pt-28 sm:px-8">
+        {/* Header strip: reads like the top of a spec sheet */}
+        <div className="reveal flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-b border-[var(--color-rule)] pb-3">
+          <p className="label">Rutgers University / CS / 2028</p>
+          <p className="mono flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.16em] text-[var(--color-ink-faint)]">
+            <span className="h-1.5 w-1.5 bg-[var(--color-accent)]" />
+            open to Summer 2027
           </p>
-
-          <div
-            className="reveal mt-10 flex flex-wrap items-center gap-3"
-            style={{ animationDelay: "240ms" }}
-          >
-            <Ext
-              href={PROFILE.links.github}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-[var(--color-accent)] px-5 py-3 text-[0.92rem] font-semibold text-[oklch(0.16_0_0)] transition-[transform,background-color] duration-300 ease-[var(--ease-out-quint)] hover:-translate-y-0.5 hover:bg-[var(--color-accent-bright)]"
-            >
-              <GitHubIcon className="h-[1.15rem] w-[1.15rem]" />
-              GitHub
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Ext>
-            <Ext
-              href={PROFILE.links.linkedin}
-              className="group inline-flex items-center gap-2.5 rounded-full border border-[var(--color-line)] px-5 py-3 text-[0.92rem] font-semibold text-[var(--color-ink)] transition-[transform,border-color,background-color] duration-300 ease-[var(--ease-out-quint)] hover:-translate-y-0.5 hover:border-[var(--color-ink-faint)] hover:bg-[var(--color-surface)]"
-            >
-              <LinkedInIcon className="h-[1.05rem] w-[1.05rem]" />
-              LinkedIn
-            </Ext>
-            <a
-              href="#projects"
-              className="link-underline ml-1 inline-flex items-center gap-1.5 px-1 py-2 text-[0.92rem] font-medium text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
-            >
-              See the work
-            </a>
-          </div>
         </div>
 
-        {/* Right: photo placeholder */}
-        <div className="reveal justify-self-center lg:justify-self-end" style={{ animationDelay: "180ms" }}>
-          <PhotoPlaceholder src={PROFILE.photo} name={PROFILE.name} />
+        <div className="py-9">
+          <h1
+            className="reveal text-[clamp(2.6rem,11.5vw,8.2rem)] leading-[0.9] tracking-[-0.06em]"
+            style={{ animationDelay: "60ms" }}
+          >
+            KRISH
+            <br />
+            RAMANI
+            <span className="text-[var(--color-accent)]">_</span>
+          </h1>
+
+          {/* Recruiters scan for seconds. Say the role outright rather than
+              making them infer it from the prose. */}
+          <p
+            className="reveal mono mt-5 text-[clamp(0.95rem,2vw,1.25rem)] tracking-[-0.01em] text-[var(--color-ink-soft)]"
+            style={{ animationDelay: "110ms" }}
+          >
+            {HERO.role}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-x-14 gap-y-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+          <div className="reveal" style={{ animationDelay: "150ms" }}>
+            <p className="max-w-xl text-[clamp(1.05rem,1.9vw,1.24rem)] leading-[1.6] text-[var(--color-ink-soft)]">
+              {HERO.intro}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-4">
+              <a
+                href="#projects"
+                className="link-underline mono text-[0.92rem] font-semibold text-[var(--color-ink)]"
+              >
+                ./see-the-work
+              </a>
+              <Ext
+                href={PROFILE.links.github}
+                className="link-draw mono inline-flex items-center gap-2 text-[0.92rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
+              >
+                <GitHubIcon className="h-[0.95rem] w-[0.95rem]" />
+                github
+              </Ext>
+              <Ext
+                href={PROFILE.links.linkedin}
+                className="link-draw mono inline-flex items-center gap-2 text-[0.92rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
+              >
+                <LinkedInIcon className="h-[0.9rem] w-[0.9rem]" />
+                linkedin
+              </Ext>
+              <Ext
+                href={`mailto:${PROFILE.links.email}`}
+                className="link-draw mono text-[0.92rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
+              >
+                email
+              </Ext>
+              {PROFILE.links.resume && (
+                <Ext
+                  href={PROFILE.links.resume}
+                  className="link-draw mono text-[0.92rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
+                >
+                  resume.pdf
+                </Ext>
+              )}
+            </div>
+          </div>
+
+          {/* Status readout replaces the handwritten aside */}
+          <dl
+            className="reveal mono border-t border-[var(--color-ink)] text-[0.76rem]"
+            style={{ animationDelay: "240ms" }}
+          >
+            {HERO.stats.map((s) => (
+              <div
+                key={s.k}
+                className="flex items-baseline justify-between gap-4 border-b border-[var(--color-rule-soft)] py-2"
+              >
+                <dt className="uppercase tracking-[0.14em] text-[var(--color-ink-faint)]">
+                  {s.k}
+                </dt>
+                <dd
+                  className={
+                    s.signal
+                      ? "text-right font-semibold text-[var(--color-ink)] underline decoration-1 underline-offset-4"
+                      : "text-right text-[var(--color-ink-soft)]"
+                  }
+                >
+                  {s.v}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className="relative mx-auto max-w-5xl px-6 sm:px-8">
+        <div
+          className="reveal grid grid-cols-1 items-end gap-x-12 gap-y-5 border-t-2 border-[var(--color-ink)] pt-6 sm:grid-cols-[1fr_auto]"
+          style={{ animationDelay: "320ms" }}
+        >
+          <p className="max-w-2xl text-[clamp(1.02rem,2vw,1.2rem)] leading-[1.5] text-[var(--color-ink-soft)]">
+            {HERO.contents}
+          </p>
+          <a
+            href="#projects"
+            className="link-underline mono shrink-0 text-[0.92rem] font-semibold text-[var(--color-ink)]"
+          >
+            start with the work ↓
+          </a>
         </div>
       </div>
     </section>
-  );
-}
-
-function PhotoPlaceholder({ src, name }) {
-  const initials = name
-    .split(" ")
-    .map((w) => w[0])
-    .join("");
-
-  return (
-    <figure className="relative w-[min(78vw,21rem)]">
-      {/* offset structural frame — solid hairline, no glow */}
-      <div
-        className="absolute -inset-3 rounded-2xl border border-[var(--color-line-soft)]"
-        aria-hidden="true"
-      />
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]">
-        {src ? (
-          <img src={src} alt={`Portrait of ${name}`} className="h-full w-full object-cover" />
-        ) : (
-          <div className="grid h-full w-full place-items-center bg-[var(--color-surface)]">
-            <div className="grid-field absolute inset-0 opacity-50" aria-hidden="true" />
-            <div className="relative text-center">
-              <div className="font-display text-6xl font-bold text-[var(--color-ink-faint)]">
-                {initials}
-              </div>
-              <div className="mono mt-3 text-[0.7rem] uppercase tracking-widest text-[var(--color-ink-faint)]">
-                photo · swap later
-              </div>
-            </div>
-          </div>
-        )}
-        {/* corner ticks — engineering-frame detail */}
-        <Corner className="left-2 top-2" />
-        <Corner className="right-2 top-2 rotate-90" />
-        <Corner className="bottom-2 left-2 -rotate-90" />
-        <Corner className="bottom-2 right-2 rotate-180" />
-      </div>
-    </figure>
-  );
-}
-
-function Corner({ className }) {
-  return (
-    <span
-      className={`pointer-events-none absolute h-3.5 w-3.5 border-l border-t border-[var(--color-accent)]/70 ${className}`}
-      aria-hidden="true"
-    />
   );
 }

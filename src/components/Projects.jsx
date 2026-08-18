@@ -1,22 +1,26 @@
 import { PROJECTS } from "../data.js";
-import { Section, SectionHeader } from "./Section.jsx";
+import { Section, Label } from "./Section.jsx";
 import Reveal from "./Reveal.jsx";
 import Ext from "./Ext.jsx";
-import { GitHubIcon, ArrowUpRight, CodeIcon } from "./icons.jsx";
+import CountUp from "./CountUp.jsx";
+import { GitHubIcon, ArrowUpRight } from "./icons.jsx";
 
 export default function Projects() {
   return (
     <Section id="projects">
-      <SectionHeader
-        kicker="projects"
-        title="Things I've built and shipped."
-        lead="Each one is a complete application — backend, frontend, system design, and real deployment, not a notebook. ML is the specialty; production engineering is the constant."
-      />
+      <Reveal>
+        <h2 className="max-w-2xl text-[clamp(2.1rem,5vw,3.4rem)]">Projects.</h2>
+        <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-[var(--color-ink-mut)]">
+          Each one is a complete application: trained model, API, frontend, and a URL you
+          can open right now. I've noted where each got difficult, because that's usually
+          more interesting than the parts that went smoothly.
+        </p>
+      </Reveal>
 
-      <div className="flex flex-col gap-5">
-        {PROJECTS.map((p, i) => (
-          <Reveal key={p.name} delay={i * 90}>
-            <ProjectRow project={p} index={i + 1} />
+      <div className="mt-20">
+        {PROJECTS.map((p) => (
+          <Reveal key={p.name}>
+            <ProjectEntry project={p} />
           </Reveal>
         ))}
       </div>
@@ -24,110 +28,110 @@ export default function Projects() {
   );
 }
 
-function ProjectRow({ project, index }) {
-  const { name, blurb, description, metrics, stack, deployment, links, status } = project;
-  const live = status === "live";
+function ProjectEntry({ project }) {
+  const { name, blurb, when, description, hard, metrics, stack, links, status } = project;
 
   return (
-    <article className="group relative grid grid-cols-1 gap-x-12 gap-y-6 rounded-2xl border border-[var(--color-line-soft)] bg-[var(--color-surface)]/40 p-6 transition-[border-color,background-color] duration-400 ease-[var(--ease-out-quint)] hover:border-[var(--color-line)] hover:bg-[var(--color-surface)]/70 sm:p-8 lg:grid-cols-[1fr_1.4fr]">
-      {/* Left rail: identity */}
-      <div className="flex flex-col">
-        <div className="flex items-center gap-3">
-          <span className="mono text-[0.8rem] text-[var(--color-ink-faint)]">
-            {String(index).padStart(2, "0")}
-          </span>
-          <StatusBadge live={live} />
-        </div>
-        <h3 className="mt-4 text-[1.7rem] font-bold tracking-[-0.02em] text-[var(--color-ink)]">
-          {name}
-        </h3>
-        <p className="mt-1 text-[0.98rem] text-[var(--color-accent-bright)]">{blurb}</p>
+    <article className="group/row relative pb-16 pt-8">
+      {/* The top hairline is its own element so it can both draw in on reveal
+          and warm to the accent when the row is hovered. */}
+      <span
+        aria-hidden="true"
+        className="rule-draw row-edge absolute inset-x-0 top-0 h-px bg-[var(--color-rule)]"
+      />
 
-        {/* Spec strip — real metrics, mono */}
-        <dl className="mt-6 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[var(--color-line-soft)] bg-[var(--color-line-soft)] sm:grid-cols-1">
-          {metrics.map((m) => (
-            <div
-              key={m.label}
-              className="flex items-baseline justify-between gap-3 bg-[var(--color-bg)] px-3.5 py-2.5"
-            >
-              <dt className="mono text-[0.72rem] uppercase tracking-wider text-[var(--color-ink-faint)]">
-                {m.label}
-              </dt>
-              <dd className="mono text-right text-[0.84rem] font-medium text-[var(--color-ink-soft)]">
-                {m.value}
-              </dd>
-            </div>
-          ))}
-        </dl>
+      <div className="flex items-baseline justify-between gap-6">
+        <span className="mono text-[0.76rem] text-[var(--color-ink-faint)]">{when}</span>
+        <span className="mono text-[0.7rem] uppercase tracking-[0.16em] text-[var(--color-ink-faint)]">
+          {status === "live" ? "deployed" : "in progress"}
+        </span>
       </div>
 
-      {/* Right: narrative + stack + links */}
-      <div className="flex flex-col">
-        <p className="max-w-[60ch] text-[1.05rem] leading-[1.72] text-[var(--color-ink-soft)]">
-          {description}
-        </p>
+      <h3 className="row-name mt-5 text-[clamp(2.3rem,6.2vw,4.1rem)] font-semibold leading-[0.94]">
+        {name}
+      </h3>
+      <p className="row-name mono mt-3 text-[0.92rem] tracking-[-0.01em] text-[var(--color-ink-faint)]">
+        <span className="text-[var(--color-ink-faint)]">// </span>
+        {blurb.toLowerCase()}
+      </p>
 
-        <p className="mono mt-5 text-[0.78rem] leading-relaxed text-[var(--color-ink-mut)]">
-          {deployment}
-        </p>
+      <div className="mt-11 grid grid-cols-1 gap-x-16 gap-y-10 lg:grid-cols-[1.4fr_1fr]">
+        <div>
+          <p className="max-w-[58ch] text-[1.06rem] leading-[1.78] text-[var(--color-ink-soft)]">
+            {description}
+          </p>
 
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {stack.map((s) => (
-            <li
-              key={s}
-              className="rounded-md border border-[var(--color-line-soft)] bg-[var(--color-bg)] px-2.5 py-1 text-[0.78rem] text-[var(--color-ink-mut)]"
-            >
-              {s}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-auto flex flex-wrap items-center gap-3 pt-7">
-          {links.live ? (
-            <Ext
-              href={links.live}
-              className="group/btn inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-4 py-2 text-[0.85rem] font-semibold text-[oklch(0.16_0_0)] transition-[transform,background-color] duration-300 ease-[var(--ease-out-quint)] hover:-translate-y-0.5 hover:bg-[var(--color-accent-bright)]"
-            >
-              Live demo
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-            </Ext>
-          ) : (
-            <span className="mono inline-flex items-center gap-2 rounded-full border border-dashed border-[var(--color-line)] px-4 py-2 text-[0.78rem] text-[var(--color-ink-faint)]">
-              <CodeIcon className="h-3.5 w-3.5" />
-              demo coming soon
-            </span>
+          {hard && (
+            <aside className="mt-8 max-w-[56ch] border-l-2 border-[var(--color-accent)] pl-5">
+              <Label className="!text-[var(--color-accent)]">Where it got hard</Label>
+              <p className="mt-2 text-[1rem] leading-[1.72] text-[var(--color-ink-soft)]">
+                {hard}
+              </p>
+            </aside>
           )}
 
-          {links.repo ? (
-            <Ext
-              href={links.repo}
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] px-4 py-2 text-[0.85rem] font-semibold text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--color-ink-faint)] hover:bg-[var(--color-surface)]"
-            >
-              <GitHubIcon className="h-4 w-4" />
-              Source
-            </Ext>
-          ) : null}
+          <div className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-3">
+            {status === "live" && links.live && (
+              <Ext
+                href={links.live}
+                className="link-underline group/btn inline-flex items-center gap-1.5 text-[1rem] font-semibold text-[var(--color-ink)]"
+              >
+                Open it
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+              </Ext>
+            )}
+            {links.repo && (
+              <Ext
+                href={links.repo}
+                className="link-draw inline-flex items-center gap-2 text-[1rem] text-[var(--color-ink-mut)] transition-colors hover:text-[var(--color-ink)]"
+              >
+                <GitHubIcon className="h-[0.95rem] w-[0.95rem]" />
+                Read the code
+              </Ext>
+            )}
+          </div>
+        </div>
+
+        {/* Spec table. Reads like the back page of a datasheet rather than
+            three little boxes in a row. */}
+        <div>
+          <dl className="mono border-l-2 border-[var(--color-rule)] pl-5 text-[0.88rem]">
+            {metrics.map((m) => {
+              const numeric = /^[\d.]/.test(m.value);
+              return (
+                <div key={m.label} className="flex flex-wrap items-baseline gap-x-2 py-1.5">
+                  <dt className="text-[var(--color-ink-mut)]">
+                    {m.label.replace(/[\s-]+/g, "_")}
+                  </dt>
+                  <span aria-hidden="true" className="text-[var(--color-ink-faint)]">
+                    =
+                  </span>
+                  <dd
+                    className={
+                      numeric
+                        ? "figure font-semibold text-[var(--color-ink)]"
+                        : "figure text-[var(--color-ink-soft)]"
+                    }
+                  >
+                    {numeric ? <CountUp value={m.value} /> : `"${m.value}"`}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+
+          <ul className="mono mt-7 flex flex-wrap gap-x-2 gap-y-1.5 text-[0.74rem] text-[var(--color-ink-faint)]">
+            {stack.map((tech) => (
+              <li
+                key={tech}
+                className="border border-[var(--color-rule-soft)] px-2 py-0.5 text-[var(--color-ink-mut)]"
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </article>
-  );
-}
-
-function StatusBadge({ live }) {
-  return (
-    <span
-      className={`mono inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[0.68rem] uppercase tracking-wider ${
-        live
-          ? "bg-[var(--color-accent-soft)] text-[var(--color-accent-bright)]"
-          : "bg-[var(--color-surface-2)] text-[var(--color-ink-mut)]"
-      }`}
-    >
-      <span
-        className={`h-1.5 w-1.5 rounded-full ${
-          live ? "bg-[var(--color-accent)]" : "bg-[var(--color-ink-faint)]"
-        }`}
-      />
-      {live ? "Live" : "In progress"}
-    </span>
   );
 }
